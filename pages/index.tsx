@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/layout'
 import styles from '../styles/Home.module.css'
+import { Button } from '@mantine/core';
 
 export default function Home() {
   return (
@@ -16,7 +17,9 @@ export default function Home() {
           Available Routes:
           <ul>
             <li>
-              <Link href="/api/hello" target="_blank">api/hello</Link>
+              <Button>
+                <Link href="/api/hello" target="_blank">api/hello</Link>
+              </Button>
             </li>
           </ul>
         </div>
