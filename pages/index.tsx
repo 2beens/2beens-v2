@@ -17,7 +17,7 @@ export default function Home() {
           Available Routes:
           <ul>
             <li>
-              <Button onClick={ () => { window.open ('/api/hello', '_ blank'); } }>
+              <Button onClick={() => { window.open('/api/hello', '_ blank'); }}>
                 <p>/api/hello</p>
               </Button>
             </li>

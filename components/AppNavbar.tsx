@@ -27,11 +27,11 @@ export default function AppNavbar({ links }: AppNavbarProps) {
     <Button key={link.link} variant="light" onClick={() => {
       router.push(link.link);
     }}>
-      <Group position="apart">
+      <Group position="left">
         <ThemeIcon color={link.iconColor} variant="light">
           {link.icon}
         </ThemeIcon>
-        <Text>{link.label}</Text>
+        <Text size="sm">{link.label}</Text>
       </Group>
     </Button>
   ));

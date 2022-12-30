@@ -9,11 +9,14 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  Button,
+  Group,
+  ThemeIcon,
 } from '@mantine/core';
 import styles from './layout.module.css'
 import Link from 'next/link'
 import AppNavbar from './AppNavbar';
-import { IconBook, IconBook2, IconHome, IconMan, IconTool, IconTools } from '@tabler/icons';
+import { IconBook, IconBook2, IconHome, IconLogin, IconMan, IconTool, IconTools } from '@tabler/icons';
 
 export const siteTitle = '2beens v2'
 
@@ -69,7 +72,13 @@ export default function Layout({
               />
             </MediaQuery>
 
-            <Text>Application header</Text>
+            <Text>2BEENS</Text>
+
+            <Button variant="subtle">
+              <ThemeIcon color={'teal'} variant="light">
+                <IconLogin />
+              </ThemeIcon>
+            </Button>
           </div>
         </Header>
       }
