@@ -3,10 +3,13 @@ import Link from 'next/link'
 import Layout from '../components/layout'
 import styles from '../styles/Home.module.css'
 import { Button } from '@mantine/core';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
-    <Layout>
+    <Layout home>
       <Head>
         <title>Create Next App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,9 +20,21 @@ export default function Home() {
           Available Routes:
           <ul>
             <li>
-              <Button>
-                <Link href="/api/hello" target="_blank">api/hello</Link>
+              <Button onClick={ () => { router.push("/api/hello") } }>
+                <p>/api/hello</p>
               </Button>
+            </li>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/guestbook">Guestbook</Link>
+            </li>
+            <li>
+              <Link href="/util">Util</Link>
             </li>
           </ul>
         </div>
