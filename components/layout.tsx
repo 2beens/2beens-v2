@@ -13,6 +13,7 @@ import {
 import styles from './layout.module.css'
 import Link from 'next/link'
 import AppNavbar from './AppNavbar';
+import { IconBook, IconBook2, IconHome, IconMan, IconTool, IconTools } from '@tabler/icons';
 
 export const siteTitle = '2beens v2'
 
@@ -24,7 +25,7 @@ export default function Layout({
   home?: boolean
 }) {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(true);
 
   return (
     <AppShell
@@ -36,7 +37,12 @@ export default function Layout({
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <AppNavbar />
+        <AppNavbar links={[
+          { link: "/", label: "Home", icon: <IconHome size={16} />, iconColor: 'red' },
+          { link: "/about", label: "About", icon: <IconMan size={16} />, iconColor: 'indigo' },
+          { link: "/guestbook", label: "Guestbook", icon: <IconBook2 size={16} />, iconColor: 'pink' },
+          { link: "/util", label: "Util", icon: <IconTools size={16} />, iconColor: 'teal' },
+        ]} />
       }
       aside={
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>

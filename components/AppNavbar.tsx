@@ -5,13 +5,36 @@ import {
   Flex,
   Button,
   Group,
+  ThemeIcon,
+  DefaultMantineColor,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import { IconHome, IconBook, IconTool, IconMan } from '@tabler/icons';
 
-export default function AppNavbar() {
+interface AppNavbarProps {
+  links: {
+    link: string;
+    label: string;
+    icon: React.ReactNode;
+    iconColor: DefaultMantineColor;
+  }[];
+}
+
+export default function AppNavbar({ links }: AppNavbarProps) {
   const router = useRouter();
   const [opened, setOpened] = useState(false);
+
+  const linkItems = links.map((link) => (
+    <Button key={link.link} variant="light" onClick={() => {
+      router.push(link.link);
+    }}>
+      <Group position="apart">
+        <ThemeIcon color={link.iconColor} variant="light">
+          {link.icon}
+        </ThemeIcon>
+        <Text>{link.label}</Text>
+      </Group>
+    </Button>
+  ));
 
   return (
     <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
@@ -23,30 +46,7 @@ export default function AppNavbar() {
           direction="column"
           wrap="wrap"
         >
-          <Button variant="light" onClick={() => { router.push("/") }}>
-            <Group position="apart">
-              <IconHome size={16} />
-              <Text>Home</Text>
-            </Group>
-          </Button>
-          <Button variant="light" onClick={() => { router.push("/about") }}>
-            <Group position="apart">
-              <IconMan size={16} />
-              <Text>About</Text>
-            </Group>
-          </Button>
-          <Button variant="light" onClick={() => { router.push("/guestbook") }}>
-            <Group position="apart">
-              <IconBook size={16} />
-              <Text>Guestbook</Text>
-            </Group>
-          </Button>
-          <Button variant="light" onClick={() => { router.push("/util") }}>
-            <Group position="apart">
-              <IconTool size={16} />
-              <Text>Util</Text>
-            </Group>
-          </Button>
+          {linkItems}
         </Flex>
       </Navbar.Section>
       <Navbar.Section>{/* Footer with user */}</Navbar.Section>

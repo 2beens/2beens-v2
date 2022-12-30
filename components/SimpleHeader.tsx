@@ -55,8 +55,6 @@ export function SimpleHeader({ links }: SimpleHeaderProps) {
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
 
-  console.log('active', active, 'link', links[0].link);
-
   const items = links.map((link) => (
     <a
       key={link.label}
