@@ -3,11 +3,8 @@ import Link from 'next/link'
 import Layout from '../components/layout'
 import styles from '../styles/Home.module.css'
 import { Button } from '@mantine/core';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const router = useRouter();
-
   return (
     <Layout home>
       <Head>
@@ -20,7 +17,7 @@ export default function Home() {
           Available Routes:
           <ul>
             <li>
-              <Button onClick={ () => { router.push("/api/hello") } }>
+              <Button onClick={ () => { window.open ('/api/hello', '_ blank'); } }>
                 <p>/api/hello</p>
               </Button>
             </li>

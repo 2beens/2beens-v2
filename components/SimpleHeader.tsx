@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantine/ds';
-// import { useRouter } from 'next/navigation';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -55,7 +54,6 @@ export function SimpleHeader({ links }: SimpleHeaderProps) {
   const [opened, { toggle }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
-  // const router = useRouter();
 
   console.log('active', active, 'link', links[0].link);
 
@@ -67,7 +65,6 @@ export function SimpleHeader({ links }: SimpleHeaderProps) {
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
-        // router.push(link.link);
       }}
     >
       {link.label}
