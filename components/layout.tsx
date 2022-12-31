@@ -14,6 +14,7 @@ import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconLogin, IconMan, IconTools } from '@tabler/icons';
 import AppCtx from '../contexts/app';
 import AppHeader from './AppHeader';
+import AppFooter from './AppFooter';
 
 export const siteTitle = '2beens v2'
 
@@ -52,9 +53,7 @@ export default function Layout({
         </MediaQuery>
       }
       footer={
-        <Footer height={60} p="md">
-          <Text>App Footer</Text>
-        </Footer>
+        <AppFooter />
       }
       header={
         <AppHeader />
