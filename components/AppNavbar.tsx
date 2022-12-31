@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
   Navbar,
   Text,
@@ -9,6 +9,7 @@ import {
   DefaultMantineColor,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
+import AppCtx from '../contexts/app';
 
 interface AppNavbarProps {
   links: {
@@ -21,7 +22,7 @@ interface AppNavbarProps {
 
 export default function AppNavbar({ links }: AppNavbarProps) {
   const router = useRouter();
-  const [opened, setOpened] = useState(false);
+  const appContext = useContext(AppCtx);
 
   const linkItems = links.map((link) => (
     <Button key={link.link} variant="light" onClick={() => {
@@ -37,7 +38,7 @@ export default function AppNavbar({ links }: AppNavbarProps) {
   ));
 
   return (
-    <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
+    <Navbar p="md" hiddenBreakpoint="sm" hidden={!appContext?.showNavbar} width={{ sm: 200, lg: 300 }}>
       <Navbar.Section grow mt="md">
         <Flex
           mih={50}
@@ -49,7 +50,12 @@ export default function AppNavbar({ links }: AppNavbarProps) {
           {linkItems}
         </Flex>
       </Navbar.Section>
-      <Navbar.Section>{/* Footer with user */}</Navbar.Section>
+      <Navbar.Section>{
+        <Group>
+          <Text>{appContext?.name}</Text>
+          <Text>show navbar: {appContext?.showNavbar ? "true" : "false"}</Text>
+        </Group>
+      }</Navbar.Section>
     </Navbar>
   )
 }

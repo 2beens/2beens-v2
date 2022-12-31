@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { useState } from 'react';
+import { useContext } from 'react';
 import {
   AppShell,
   Header,
@@ -10,13 +10,13 @@ import {
   Burger,
   useMantineTheme,
   Button,
-  Group,
   ThemeIcon,
 } from '@mantine/core';
 import styles from './layout.module.css'
 import Link from 'next/link'
 import AppNavbar from './AppNavbar';
-import { IconBook, IconBook2, IconHome, IconLogin, IconMan, IconTool, IconTools } from '@tabler/icons';
+import { IconBook2, IconHome, IconLogin, IconMan, IconTools } from '@tabler/icons';
+import AppCtx from '../contexts/app';
 
 export const siteTitle = '2beens v2'
 
@@ -28,7 +28,7 @@ export default function Layout({
   home?: boolean
 }) {
   const theme = useMantineTheme();
-  const [opened, setOpened] = useState(true);
+  const appContext = useContext(AppCtx);
 
   return (
     <AppShell
@@ -56,7 +56,7 @@ export default function Layout({
       }
       footer={
         <Footer height={60} p="md">
-          Application footer
+          <Text>App Footer</Text>
         </Footer>
       }
       header={
@@ -64,8 +64,8 @@ export default function Layout({
           <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
             <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
               <Burger
-                opened={opened}
-                onClick={() => setOpened((o) => !o)}
+                opened={appContext !== null && appContext.showNavbar}
+                onClick={() => appContext?.toggleNavbar()}
                 size="sm"
                 color={theme.colors.gray[6]}
                 mr="xl"
