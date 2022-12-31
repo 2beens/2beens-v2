@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import AppCtx, { AppContextInterface } from '../contexts/app';
 import { useToggle } from '@mantine/hooks';
 
@@ -30,7 +31,9 @@ export default function App(props: AppProps) {
           colorScheme: 'light',
         }}
       >
-        <Component {...pageProps} />
+        <ModalsProvider>
+          <Component {...pageProps} />
+        </ModalsProvider>
       </MantineProvider>
     </AppCtx.Provider>
   );

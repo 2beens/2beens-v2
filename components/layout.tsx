@@ -2,21 +2,18 @@ import Head from 'next/head'
 import { useContext } from 'react';
 import {
   AppShell,
-  Header,
   Footer,
   Aside,
   Text,
   MediaQuery,
-  Burger,
   useMantineTheme,
-  Button,
-  ThemeIcon,
 } from '@mantine/core';
 import styles from './layout.module.css'
 import Link from 'next/link'
 import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconLogin, IconMan, IconTools } from '@tabler/icons';
 import AppCtx from '../contexts/app';
+import AppHeader from './AppHeader';
 
 export const siteTitle = '2beens v2'
 
@@ -60,27 +57,7 @@ export default function Layout({
         </Footer>
       }
       header={
-        <Header height={{ base: 50, md: 70 }} p="md">
-          <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-            <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-              <Burger
-                opened={appContext !== null && appContext.showNavbar}
-                onClick={() => appContext?.toggleNavbar()}
-                size="sm"
-                color={theme.colors.gray[6]}
-                mr="xl"
-              />
-            </MediaQuery>
-
-            <Text>2BEENS</Text>
-
-            <Button variant="subtle">
-              <ThemeIcon color={'teal'} variant="light">
-                <IconLogin />
-              </ThemeIcon>
-            </Button>
-          </div>
-        </Header>
+        <AppHeader />
       }
     >
       <div className={styles.container}>
