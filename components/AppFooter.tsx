@@ -2,8 +2,7 @@ import {
   Footer,
   Text,
   Grid,
-  createStyles,
-  Selectors,
+  Center
 } from '@mantine/core';
 
 export default function AppFooter() {
@@ -14,9 +13,11 @@ export default function AppFooter() {
           <Text>Serj, Berlin 2021/2022</Text>
         </Grid.Col>
         <Grid.Col span={6}>
-          <Text>2022 — 4c2fe620a288e47cd6b83a81da59c119e223be46</Text>
+          <Center>
+            <Text>2022 — 4c2fe620a288e47cd6b83a81da59c119e223be46</Text>
+          </Center>
         </Grid.Col>
-        <Grid.Col span="auto">span=auto</Grid.Col>
+        <Grid.Col span="auto" />
       </Grid>
     </Footer>
   )
