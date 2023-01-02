@@ -1,8 +1,6 @@
 import Head from 'next/head'
-import { useContext } from 'react';
 import {
   AppShell,
-  Footer,
   Aside,
   Text,
   MediaQuery,
@@ -11,8 +9,7 @@ import {
 import styles from './layout.module.css'
 import Link from 'next/link'
 import AppNavbar from './AppNavbar';
-import { IconBook2, IconHome, IconLogin, IconMan, IconTools } from '@tabler/icons';
-import AppCtx from '../contexts/app';
+import { IconBook2, IconHome, IconMan, IconTools } from '@tabler/icons';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 
@@ -26,7 +23,6 @@ export default function Layout({
   home?: boolean
 }) {
   const theme = useMantineTheme();
-  const appContext = useContext(AppCtx);
 
   return (
     <AppShell
