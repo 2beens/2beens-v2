@@ -1,53 +1,66 @@
-import { useState } from 'react';
-import { createStyles, Header, Container, Group, Burger } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantine/ds';
+import { useState } from "react";
+import { createStyles, Header, Container, Group, Burger } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import { MantineLogo } from "@mantine/ds";
 
 const useStyles = createStyles((theme) => ({
   header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: '100%',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: "100%",
   },
 
   links: {
-    [theme.fn.smallerThan('xs')]: {
-      display: 'none',
+    [theme.fn.smallerThan("xs")]: {
+      display: "none",
     },
   },
 
   burger: {
-    [theme.fn.largerThan('xs')]: {
-      display: 'none',
+    [theme.fn.largerThan("xs")]: {
+      display: "none",
     },
   },
 
   link: {
-    display: 'block',
+    display: "block",
     lineHeight: 1,
-    padding: '8px 12px',
+    padding: "8px 12px",
     borderRadius: theme.radius.sm,
-    textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    textDecoration: "none",
+    color:
+      theme.colorScheme === "dark"
+        ? theme.colors.dark[0]
+        : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    "&:hover": {
+      backgroundColor:
+        theme.colorScheme === "dark"
+          ? theme.colors.dark[6]
+          : theme.colors.gray[0],
     },
   },
 
   linkActive: {
-    '&, &:hover': {
-      backgroundColor: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).background,
-      color: theme.fn.variant({ variant: 'light', color: theme.primaryColor }).color,
+    "&, &:hover": {
+      backgroundColor: theme.fn.variant({
+        variant: "light",
+        color: theme.primaryColor,
+      }).background,
+      color: theme.fn.variant({ variant: "light", color: theme.primaryColor })
+        .color,
     },
   },
 }));
 
 interface SimpleHeaderProps {
-  links: { link: string; label: string; }[];
+  links: {
+    link: string;
+    label: string;
+  }[];
 }
 
 export function SimpleHeader({ links }: SimpleHeaderProps) {
@@ -59,7 +72,9 @@ export function SimpleHeader({ links }: SimpleHeaderProps) {
     <a
       key={link.label}
       href={link.link}
-      className={cx(classes.link, { [classes.linkActive]: active === link.link })}
+      className={cx(classes.link, {
+        [classes.linkActive]: active === link.link,
+      })}
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
@@ -77,7 +92,12 @@ export function SimpleHeader({ links }: SimpleHeaderProps) {
           {items}
         </Group>
 
-        <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
+        <Burger
+          opened={opened}
+          onClick={toggle}
+          className={classes.burger}
+          size="sm"
+        />
       </Container>
     </Header>
   );

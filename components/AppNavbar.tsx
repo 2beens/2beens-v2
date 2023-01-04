@@ -25,9 +25,13 @@ export default function AppNavbar({ links }: AppNavbarProps) {
   const appContext = useContext(AppCtx);
 
   const linkItems = links.map((link) => (
-    <Button key={link.link} variant="light" onClick={() => {
-      router.push(link.link);
-    }}>
+    <Button
+      key={link.link}
+      variant="light"
+      onClick={() => {
+        router.push(link.link);
+      }}
+    >
       <Group position="left">
         <ThemeIcon color={link.iconColor} variant="light">
           {link.icon}
@@ -38,7 +42,12 @@ export default function AppNavbar({ links }: AppNavbarProps) {
   ));
 
   return (
-    <Navbar p="md" hiddenBreakpoint="sm" hidden={!appContext?.showNavbar} width={{ sm: 200, lg: 300 }}>
+    <Navbar
+      p="md"
+      hiddenBreakpoint="sm"
+      hidden={!appContext?.showNavbar}
+      width={{ sm: 200, lg: 300 }}
+    >
       <Navbar.Section grow mt="md">
         <Flex
           mih={50}
@@ -50,12 +59,16 @@ export default function AppNavbar({ links }: AppNavbarProps) {
           {linkItems}
         </Flex>
       </Navbar.Section>
-      <Navbar.Section>{
-        <Group>
-          <Text>{appContext?.name}</Text>
-          <Text>show navbar: {appContext?.showNavbar ? "true" : "false"}</Text>
-        </Group>
-      }</Navbar.Section>
+      <Navbar.Section>
+        {
+          <Group>
+            <Text>{appContext?.name}</Text>
+            <Text>
+              show navbar: {appContext?.showNavbar ? 'true' : 'false'}
+            </Text>
+          </Group>
+        }
+      </Navbar.Section>
     </Navbar>
-  )
+  );
 }

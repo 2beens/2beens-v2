@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Layout from '../components/layout'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import Link from 'next/link';
+import Layout from '../components/layout';
+import styles from '../styles/Home.module.css';
 import { Button } from '@mantine/core';
 
 export default function Home() {
@@ -17,7 +17,11 @@ export default function Home() {
           Available Routes:
           <ul>
             <li>
-              <Button onClick={() => { window.open('/api/hello', '_ blank'); }}>
+              <Button
+                onClick={() => {
+                  window.open('/api/hello', '_ blank');
+                }}
+              >
                 <p>/api/hello</p>
               </Button>
             </li>
@@ -37,5 +41,5 @@ export default function Home() {
         </div>
       </main>
     </Layout>
-  )
+  );
 }

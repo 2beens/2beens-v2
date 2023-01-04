@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import {
   AppShell,
   Aside,
@@ -6,21 +6,21 @@ import {
   MediaQuery,
   useMantineTheme,
 } from '@mantine/core';
-import styles from './layout.module.css'
-import Link from 'next/link'
+import styles from './layout.module.css';
+import Link from 'next/link';
 import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconMan, IconTools } from '@tabler/icons';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
 
-export const siteTitle = '2beens v2'
+export const siteTitle = '2beens v2';
 
 export default function Layout({
   children,
-  home
+  home,
 }: {
-  children: React.ReactNode
-  home?: boolean
+  children: React.ReactNode;
+  home?: boolean;
 }) {
   const theme = useMantineTheme();
 
@@ -28,18 +28,43 @@ export default function Layout({
     <AppShell
       styles={{
         main: {
-          background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          background:
+            theme.colorScheme === 'dark'
+              ? theme.colors.dark[8]
+              : theme.colors.gray[0],
         },
       }}
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <AppNavbar links={[
-          { link: "/", label: "Home", icon: <IconHome size={16} />, iconColor: 'red' },
-          { link: "/about", label: "About", icon: <IconMan size={16} />, iconColor: 'indigo' },
-          { link: "/guestbook", label: "Guestbook", icon: <IconBook2 size={16} />, iconColor: 'pink' },
-          { link: "/util", label: "Util", icon: <IconTools size={16} />, iconColor: 'teal' },
-        ]} />
+        <AppNavbar
+          links={[
+            {
+              link: '/',
+              label: 'Home',
+              icon: <IconHome size={16} />,
+              iconColor: 'red',
+            },
+            {
+              link: '/about',
+              label: 'About',
+              icon: <IconMan size={16} />,
+              iconColor: 'indigo',
+            },
+            {
+              link: '/guestbook',
+              label: 'Guestbook',
+              icon: <IconBook2 size={16} />,
+              iconColor: 'pink',
+            },
+            {
+              link: '/util',
+              label: 'Util',
+              icon: <IconTools size={16} />,
+              iconColor: 'teal',
+            },
+          ]}
+        />
       }
       aside={
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
@@ -48,12 +73,8 @@ export default function Layout({
           </Aside>
         </MediaQuery>
       }
-      footer={
-        <AppFooter />
-      }
-      header={
-        <AppHeader />
-      }
+      footer={<AppFooter versionInfo={'loading ...'} />}
+      header={<AppHeader />}
     >
       <div className={styles.container}>
         <Head>
@@ -75,5 +96,5 @@ export default function Layout({
         )}
       </div>
     </AppShell>
-  )
+  );
 }
