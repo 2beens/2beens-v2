@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
   Navbar,
   Text,
@@ -9,7 +8,6 @@ import {
   DefaultMantineColor,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import AppCtx from '../contexts/app';
 
 interface AppNavbarProps {
   links: {
@@ -22,7 +20,6 @@ interface AppNavbarProps {
 
 export default function AppNavbar({ links }: AppNavbarProps) {
   const router = useRouter();
-  const appContext = useContext(AppCtx);
 
   const linkItems = links.map((link) => (
     <Button
@@ -45,7 +42,6 @@ export default function AppNavbar({ links }: AppNavbarProps) {
     <Navbar
       p="md"
       hiddenBreakpoint="sm"
-      hidden={!appContext?.showNavbar}
       width={{ sm: 200, lg: 300 }}
     >
       <Navbar.Section grow mt="md">
@@ -62,10 +58,8 @@ export default function AppNavbar({ links }: AppNavbarProps) {
       <Navbar.Section>
         {
           <Group>
-            <Text>{appContext?.name}</Text>
-            <Text>
-              show navbar: {appContext?.showNavbar ? 'true' : 'false'}
-            </Text>
+            <Text>Something here</Text>
+            <Text>Something more here 🦀</Text>
           </Group>
         }
       </Navbar.Section>

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useContext } from 'react';
 import {
   AppShell,
   Aside,
@@ -12,6 +13,7 @@ import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconMan, IconTools } from '@tabler/icons';
 import AppHeader from './AppHeader';
 import AppFooter from './AppFooter';
+import AppCtx from '../contexts/app';
 
 export const siteTitle = '2beens v2';
 
@@ -23,6 +25,7 @@ export default function Layout({
   home?: boolean;
 }) {
   const theme = useMantineTheme();
+  const appContext = useContext(AppCtx);
 
   return (
     <AppShell
@@ -37,34 +40,38 @@ export default function Layout({
       navbarOffsetBreakpoint="sm"
       asideOffsetBreakpoint="sm"
       navbar={
-        <AppNavbar
-          links={[
-            {
-              link: '/',
-              label: 'Home',
-              icon: <IconHome size={16} />,
-              iconColor: 'red',
-            },
-            {
-              link: '/about',
-              label: 'About',
-              icon: <IconMan size={16} />,
-              iconColor: 'indigo',
-            },
-            {
-              link: '/guestbook',
-              label: 'Guestbook',
-              icon: <IconBook2 size={16} />,
-              iconColor: 'pink',
-            },
-            {
-              link: '/util',
-              label: 'Util',
-              icon: <IconTools size={16} />,
-              iconColor: 'teal',
-            },
-          ]}
-        />
+        <div>
+          {appContext?.showNavbar && (
+            <AppNavbar
+              links={[
+                {
+                  link: '/',
+                  label: 'Home',
+                  icon: <IconHome size={16} />,
+                  iconColor: 'red',
+                },
+                {
+                  link: '/about',
+                  label: 'About',
+                  icon: <IconMan size={16} />,
+                  iconColor: 'indigo',
+                },
+                {
+                  link: '/guestbook',
+                  label: 'Guestbook',
+                  icon: <IconBook2 size={16} />,
+                  iconColor: 'pink',
+                },
+                {
+                  link: '/util',
+                  label: 'Util',
+                  icon: <IconTools size={16} />,
+                  iconColor: 'teal',
+                },
+              ]}
+            />
+          )}
+        </div>
       }
       aside={
         <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
