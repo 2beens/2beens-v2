@@ -88,7 +88,7 @@ export default function AppHeader() {
               size="md"
               color={theme.colorScheme === 'dark' ? 'gray' : 'dark'}
               onChange={() => {
-                appContext?.toggleTheme();
+                appContext?.toggleColorScheme();
               }}
               onLabel={
                 <IconSun

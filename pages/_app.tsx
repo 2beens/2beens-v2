@@ -1,22 +1,29 @@
 import '../styles/globals.css';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider } from '@mantine/core';
+import { MantineProvider, ColorScheme  } from '@mantine/core';
 import { ModalsProvider } from '@mantine/modals';
 import AppCtx, { AppContextInterface } from '../contexts/app';
-import { useToggle } from '@mantine/hooks';
+import { useLocalStorage, useToggle } from '@mantine/hooks';
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
 
   const [showNavbar, toggleNavbar] = useToggle([true, false]);
-  const [useDarkTheme, toggleTheme] = useToggle([true, false]);
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'color-scheme',
+    defaultValue: 'dark',
+  });
+
+  const toggleColorScheme = () =>
+    setColorScheme((current) => (current === 'dark' ? 'light' : 'dark'));
+
   const appContext: AppContextInterface = {
     name: 'Using React Context in a Typescript App!!',
     showNavbar: showNavbar,
     toggleNavbar: toggleNavbar,
-    useDarkTheme: useDarkTheme,
-    toggleTheme: toggleTheme,
+    colorScheme: colorScheme,
+    toggleColorScheme: toggleColorScheme,
   };
 
   return (
@@ -34,7 +41,7 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: useDarkTheme ? 'dark' : 'light',
+          colorScheme: colorScheme,
         }}
       >
         <ModalsProvider>
