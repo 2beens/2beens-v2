@@ -10,10 +10,13 @@ export default function App(props: AppProps) {
   const { Component, pageProps } = props;
 
   const [showNavbar, toggleNavbar] = useToggle([true, false]);
+  const [useDarkTheme, toggleTheme] = useToggle([true, false]);
   const appContext: AppContextInterface = {
     name: 'Using React Context in a Typescript App!!',
     showNavbar: showNavbar,
     toggleNavbar: toggleNavbar,
+    useDarkTheme: useDarkTheme,
+    toggleTheme: toggleTheme,
   };
 
   return (
@@ -31,7 +34,7 @@ export default function App(props: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: 'light',
+          colorScheme: useDarkTheme ? 'dark' : 'light',
         }}
       >
         <ModalsProvider>

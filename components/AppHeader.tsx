@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 import {
   Header,
   Text,
@@ -9,10 +9,12 @@ import {
   ThemeIcon,
   PasswordInput,
   Grid,
+  Switch,
+  Group,
 } from '@mantine/core';
 import { openModal, closeAllModals } from '@mantine/modals';
-import AppCtx from "../contexts/app";
-import { IconLogin } from "@tabler/icons";
+import AppCtx from '../contexts/app';
+import { IconLogin, IconMoonStars, IconSun } from '@tabler/icons';
 
 export default function AppHeader() {
   const theme = useMantineTheme();
@@ -46,14 +48,27 @@ export default function AppHeader() {
                 children: (
                   <>
                     <TextInput label="Username" data-autofocus />
-                    <PasswordInput
-                      placeholder="Password"
-                      label="Password"
-                    />
-                    <Button variant="light" color="green" fullWidth onClick={() => { closeAllModals() }} mt="md">
+                    <PasswordInput placeholder="Password" label="Password" />
+                    <Button
+                      variant="light"
+                      color="green"
+                      fullWidth
+                      onClick={() => {
+                        closeAllModals();
+                      }}
+                      mt="md"
+                    >
                       Go!
                     </Button>
-                    <Button variant="light" color="red" fullWidth onClick={() => { closeAllModals() }} mt="md">
+                    <Button
+                      variant="light"
+                      color="red"
+                      fullWidth
+                      onClick={() => {
+                        closeAllModals();
+                      }}
+                      mt="md"
+                    >
                       Cancel
                     </Button>
                   </>
@@ -61,12 +76,38 @@ export default function AppHeader() {
               });
             }}
           >
-            <ThemeIcon color={'teal'} variant="light">
+            <ThemeIcon color={'teal'}>
               <IconLogin />
             </ThemeIcon>
           </Button>
         </Grid.Col>
+
+        <Grid.Col span="auto">
+          <Group position="center">
+            <Switch
+              size="md"
+              color={theme.colorScheme === 'dark' ? 'gray' : 'dark'}
+              onChange={() => {
+                appContext?.toggleTheme();
+              }}
+              onLabel={
+                <IconSun
+                  size={16}
+                  stroke={2.5}
+                  color={theme.colors.yellow[4]}
+                />
+              }
+              offLabel={
+                <IconMoonStars
+                  size={16}
+                  stroke={2.5}
+                  color={theme.colors.blue[6]}
+                />
+              }
+            />
+          </Group>
+        </Grid.Col>
       </Grid>
     </Header>
-  )
+  );
 }
