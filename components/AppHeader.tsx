@@ -35,11 +35,11 @@ export default function AppHeader() {
           {/* </MediaQuery> */}
         </Grid.Col>
 
-        <Grid.Col span={10}>
+        <Grid.Col span={8}>
           <Text>2BEENS</Text>
         </Grid.Col>
 
-        <Grid.Col span="auto">
+        <Grid.Col span={1}>
           <Button
             variant="subtle"
             onClick={() => {
@@ -82,30 +82,24 @@ export default function AppHeader() {
           </Button>
         </Grid.Col>
 
-        <Grid.Col span="auto">
-          <Group position="center">
-            <Switch
-              size="md"
-              color={theme.colorScheme === 'dark' ? 'gray' : 'dark'}
-              onChange={() => {
-                appContext?.toggleColorScheme();
-              }}
-              onLabel={
-                <IconSun
-                  size={16}
-                  stroke={2.5}
-                  color={theme.colors.yellow[4]}
-                />
-              }
-              offLabel={
-                <IconMoonStars
-                  size={16}
-                  stroke={2.5}
-                  color={theme.colors.blue[6]}
-                />
-              }
-            />
-          </Group>
+        <Grid.Col span={1}>
+          <Switch
+            size="md"
+            color={theme.colorScheme === 'dark' ? 'gray' : 'dark'}
+            onChange={() => {
+              appContext?.toggleColorScheme();
+            }}
+            onLabel={
+              <IconSun size={16} stroke={2.5} color={theme.colors.yellow[4]} />
+            }
+            offLabel={
+              <IconMoonStars
+                size={16}
+                stroke={2.5}
+                color={theme.colors.blue[6]}
+              />
+            }
+          />
         </Grid.Col>
       </Grid>
     </Header>
