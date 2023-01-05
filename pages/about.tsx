@@ -1,7 +1,7 @@
 import { Divider, Space, Stack } from '@mantine/core';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import styles from '../styles/Common.module.css';
 
 export default function Home(props: { versionInfo: String }) {

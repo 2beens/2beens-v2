@@ -7,7 +7,7 @@ import {
   MediaQuery,
   useMantineTheme,
 } from '@mantine/core';
-import styles from './layout.module.css';
+import styles from '../styles/Layout.module.css';
 import Link from 'next/link';
 import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconMan, IconTools } from '@tabler/icons';

@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import Layout from '../components/layout';
-import { Container } from '@mantine/core';
+import Layout from '../components/Layout';
+import { Container, Stack } from '@mantine/core';
 import styles from '../styles/Common.module.css';
 
 export default function Home() {
@@ -13,8 +13,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <Container className={styles.description}>
-          <h1>Work in constant progress 👨🏼‍💻🛠</h1>
-          <h3>*attempt to create a personal site with NextJS/React</h3>
+          <Stack>
+            <h1>Work in constant progress 👨🏼‍💻🛠</h1>
+            <h3>*attempt to create a personal site with NextJS/React</h3>
+          </Stack>
         </Container>
       </main>
     </Layout>
