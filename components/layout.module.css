@@ -1,9 +1,9 @@
 .container {
   max-width: 40rem;
   padding: 0 1rem;
-  margin: 3rem auto 6rem;
+  margin: 1rem auto 3rem;
 }
 
 .backToHome {
-  margin: 3rem 0 0;
+  margin: 1rem 0 0;
 }

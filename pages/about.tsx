@@ -2,6 +2,7 @@ import { Divider, Space, Stack } from '@mantine/core';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import Layout from '../components/layout';
+import styles from '../styles/Common.module.css';
 
 export default function Home(props: { versionInfo: String }) {
   return (
@@ -11,21 +12,23 @@ export default function Home(props: { versionInfo: String }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Stack
-        justify="flex-start"
-        sx={(theme) => ({
-          backgroundColor:
-            theme.colorScheme === 'dark'
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-          height: 300,
-        })}
-      >
-        <h1>About Page</h1>
-        <Space h="lg" />
-        <Divider my="xs" label="Version info" labelPosition="center" />
-        <h2>{props.versionInfo}</h2>
-      </Stack>
+      <main className={styles.main}>
+        <Stack
+          justify="flex-start"
+          sx={(theme) => ({
+            backgroundColor:
+              theme.colorScheme === 'dark'
+                ? theme.colors.dark[8]
+                : theme.colors.gray[0],
+            height: 300,
+          })}
+        >
+          <h1>About Page</h1>
+          <Space h="lg" />
+          <Divider my="xs" label="Version info" labelPosition="center" />
+          <h2>{props.versionInfo}</h2>
+        </Stack>
+      </main>
     </Layout>
   );
 }
