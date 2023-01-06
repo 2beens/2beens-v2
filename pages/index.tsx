@@ -1,10 +1,24 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { Container, Divider, Stack, Text } from '@mantine/core';
+import { Container, Divider, Group, Stack, Text } from '@mantine/core';
 import styles from '../styles/Common.module.css';
 import { GetServerSideProps } from 'next';
+import BlogPostCard, { BlogPost } from '../components/BlogPost';
 
-export default function Home(props: { examplePost: String }) {
+interface HomePageProps {
+  posts: BlogPost[];
+}
+
+interface GetPostsResponse {
+  posts: BlogPost[];
+  total: number;
+}
+
+export default function Home(props: HomePageProps) {
+  const blogPosts = props.posts.map((post) => (
+    <BlogPostCard key={post.id} post={post} />
+  ));
+
   return (
     <Layout home>
       <Head>
@@ -17,16 +31,24 @@ export default function Home(props: { examplePost: String }) {
           <Stack>
             <h1>Work in constant progress 👨🏼‍💻🛠</h1>
             <h3>*attempt to create a personal site with NextJS/React</h3>
-            <Divider my="xs" label="Example Post" labelPosition="center" />
-            <Text>{props.examplePost}</Text>
           </Stack>
+        </Container>
+        <Divider
+          my="xs"
+          label={`${props.posts.length} blog posts loaded `}
+          labelPosition="center"
+        />
+        <Container>
+          <Group spacing={5}>{blogPosts}</Group>
         </Container>
       </main>
     </Layout>
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<
+  HomePageProps
+> = async () => {
   const page = 1;
   const size = 5;
   const endpoint =
@@ -35,17 +57,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   console.log('getting blogs from:', endpoint);
 
-  let postsCount = 0;
+  let postsData: GetPostsResponse;
   try {
     const res = await fetch(endpoint);
-
     if (res.status >= 300) {
       console.log('error' + res.status);
     } else {
-      const posts = await res.json();
-      console.log('successfully fetched posts');
-      console.log(JSON.stringify(posts));
-      postsCount = posts.total;
+      postsData = await res.json();
+      return {
+        props: {
+          posts: postsData.posts,
+          total: postsData.total,
+        },
+      };
     }
   } catch (e) {
     if (typeof e === 'string') {
@@ -59,7 +83,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   return {
     props: {
-      examplePost: `Received ${postsCount} blog posts will appear here`,
+      posts: [],
+      total: 0,
     },
   };
 };
