@@ -85,6 +85,10 @@ body {
   overflow-x: hidden;
 }
 
+a {
+  font-weight: bold;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(

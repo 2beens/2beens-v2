@@ -1,23 +1,34 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { Container, Divider, Group, Image, Stack, Text } from '@mantine/core';
+import {
+  Center,
+  Container,
+  Divider,
+  Group,
+  Image,
+  Pagination,
+  Stack,
+  Text,
+} from '@mantine/core';
 import styles from '../styles/Common.module.css';
 import { GetServerSideProps } from 'next';
 import BlogPostCard, { BlogPost } from '../components/BlogPost';
-
-interface HomePageProps {
-  posts: BlogPost[];
-}
+import { useState } from 'react';
 
 interface GetPostsResponse {
   posts: BlogPost[];
   total: number;
 }
 
-export default function Home(props: HomePageProps) {
+const blogsPageSize = 5;
+
+export default function Home(props: GetPostsResponse) {
   const blogPosts = props.posts.map((post) => (
     <BlogPostCard key={post.id} post={post} />
   ));
+
+  const pagesTotal = Math.ceil(props.total / blogsPageSize);
+  const [activePage, setPage] = useState(1);
 
   return (
     <Layout home>
@@ -44,19 +55,18 @@ export default function Home(props: HomePageProps) {
           label={`${props.posts.length} blog posts loaded `}
           labelPosition="center"
         />
-        <Container>
-          <Group spacing={5}>{blogPosts}</Group>
-        </Container>
+        <Stack spacing={10}>{blogPosts}</Stack>
+        <Pagination page={activePage} onChange={setPage} total={pagesTotal} />
       </main>
     </Layout>
   );
 }
 
 export const getServerSideProps: GetServerSideProps<
-  HomePageProps
+  GetPostsResponse
 > = async () => {
   const page = 1;
-  const size = 5;
+  const size = blogsPageSize;
   const endpoint =
     process.env.NEXT_PUBLIC_MAIN_API_ENDPOINT +
     `/blog/page/${page}/size/${size}`;
