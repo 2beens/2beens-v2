@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import { Container, Divider, Group, Stack, Text } from '@mantine/core';
+import { Container, Divider, Group, Image, Stack, Text } from '@mantine/core';
 import styles from '../styles/Common.module.css';
 import { GetServerSideProps } from 'next';
 import BlogPostCard, { BlogPost } from '../components/BlogPost';
@@ -27,12 +27,18 @@ export default function Home(props: HomePageProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Container className={styles.description}>
-          <Stack>
-            <h1>Work in constant progress 👨🏼‍💻🛠</h1>
-            <h3>*attempt to create a personal site with NextJS/React</h3>
-          </Stack>
-        </Container>
+        <Stack>
+          <h1>Work in constant progress 👨🏼‍💻🛠</h1>
+          <h3>*attempt to create a personal site with NextJS/React</h3>
+          <div style={{ width: 340, marginLeft: 'auto', marginRight: 'auto' }}>
+            <Image
+              radius={120}
+              src="/ja-sa-jacksonom.jpg"
+              alt="Me with Jackson JS22-7"
+              caption="Jackson JS22-7"
+            />
+          </div>
+        </Stack>
         <Divider
           my="xs"
           label={`${props.posts.length} blog posts loaded `}

@@ -1,5 +1,4 @@
-import Layout from '../components/Layout';
-import { Divider, Stack, Textarea } from '@mantine/core';
+import { Divider, Stack } from '@mantine/core';
 
 export interface BlogPost {
   id: number;
@@ -32,7 +31,7 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
       <h1>{post.title}</h1>
       <Divider my="xs" />
       {/* TODO: don't load content with pure html */}
-      <div dangerouslySetInnerHTML={{__html: post.content}} />
+      <div dangerouslySetInnerHTML={{ __html: post.content }} />
     </Stack>
   );
 }
