@@ -27,11 +27,39 @@ export default function Home(props: { examplePost: String }) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // TODO: fetch posts
+  const page = 1;
+  const size = 5;
+  const endpoint =
+    process.env.NEXT_PUBLIC_MAIN_API_ENDPOINT +
+    `/blog/page/${page}/size/${size}`;
+
+  console.log('getting blogs from:', endpoint);
+
+  let postsCount = 0;
+  try {
+    const res = await fetch(endpoint);
+
+    if (res.status >= 300) {
+      console.log('error' + res.status);
+    } else {
+      const posts = await res.json();
+      console.log('successfully fetched posts');
+      console.log(JSON.stringify(posts));
+      postsCount = posts.total;
+    }
+  } catch (e) {
+    if (typeof e === 'string') {
+      console.log('str err:', e.toUpperCase());
+    } else if (e instanceof Error) {
+      console.log(e.message);
+    } else {
+      console.log('unkown error');
+    }
+  }
 
   return {
     props: {
-      examplePost: 'TODO: blog posts will appear here',
+      examplePost: `Received ${postsCount} blog posts will appear here`,
     },
   };
 };
