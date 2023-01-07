@@ -1,5 +1,6 @@
 import { Center, Divider, Flex, Paper, Stack, Text } from '@mantine/core';
 import { IconStar } from '@tabler/icons';
+import { sanitize } from 'isomorphic-dompurify';
 
 export interface BlogPost {
   id: number;
@@ -10,6 +11,8 @@ export interface BlogPost {
 }
 
 export default function BlogPostCard({ post }: { post: BlogPost }) {
+  const cleanedPostHTML = sanitize(post.content);
+
   return (
     <div
       style={{ marginBottom: '70px', marginLeft: '30px', marginRight: '30px' }}
@@ -25,8 +28,7 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
 
         <Divider style={{ marginBottom: '20px' }} size={2} />
 
-        {/* TODO: don't load content with pure html */}
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        <div dangerouslySetInnerHTML={{ __html: cleanedPostHTML }} />
       </Paper>
     </div>
   );
