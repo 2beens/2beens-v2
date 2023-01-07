@@ -1,14 +1,10 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import {
-  Center,
-  Container,
   Divider,
-  Group,
   Image,
   Pagination,
   Stack,
-  Text,
 } from '@mantine/core';
 import styles from '../styles/Common.module.css';
 import { GetServerSideProps } from 'next';

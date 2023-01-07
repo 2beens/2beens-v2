@@ -80,7 +80,7 @@ export default function Layout({
           </Aside>
         </MediaQuery>
       }
-      footer={<AppFooter versionInfo={'loading ...'} />}
+      footer={<AppFooter versionInfo={appContext ? appContext.apiVersion : 'unknown version'} />}
       header={<AppHeader />}
     >
       <Head>
