@@ -10,7 +10,10 @@ import {
   PasswordInput,
   Grid,
   Switch,
+  MediaQuery,
   Group,
+  Center,
+  Title,
 } from '@mantine/core';
 import { openModal, closeAllModals } from '@mantine/modals';
 import AppCtx from '../contexts/app';
@@ -22,24 +25,39 @@ export default function AppHeader() {
 
   return (
     <Header height={{ base: 50, md: 70 }} p="md">
-      <Grid justify="center" align="center">
-        <Grid.Col span="auto">
-          {/* <MediaQuery largerThan="sm" styles={{ display: 'none' }}> */}
-          <Burger
-            opened={appContext !== null && appContext.showNavbar}
-            onClick={() => appContext?.toggleNavbar()}
-            size="sm"
-            color={theme.colors.gray[6]}
-            mr="xl"
-          />
-          {/* </MediaQuery> */}
-        </Grid.Col>
+      <Group position="apart">
+        <Group>
+          <MediaQuery largerThan="md" styles={{ display: 'none' }}>
+            <Burger
+              opened={appContext !== null && appContext.showNavbar}
+              onClick={() => appContext?.toggleNavbar()}
+              size="sm"
+              color={theme.colors.gray[6]}
+              mr="xl"
+            />
+          </MediaQuery>
+        </Group>
 
-        <Grid.Col span={8}>
-          <Text>2BEENS</Text>
-        </Grid.Col>
+        <Group>
+          <Center>
+            <Title>👨‍💻</Title>
+            <Text
+              variant="gradient"
+              gradient={{ from: 'indigo', to: 'red', deg: 45 }}
+              sx={{ fontFamily: 'Greycliff CF, sans-serif' }}
+              ta="center"
+              fz="xl"
+              fw={700}
+            >
+              <Title order={3} size="h1">
+                Personal Tech Sandbox Site
+              </Title>
+            </Text>
+            <Title>👨‍💻</Title>
+          </Center>
+        </Group>
 
-        <Grid.Col span={1}>
+        <Group>
           <Button
             variant="subtle"
             onClick={() => {
@@ -80,9 +98,7 @@ export default function AppHeader() {
               <IconLogin />
             </ThemeIcon>
           </Button>
-        </Grid.Col>
 
-        <Grid.Col span={1}>
           <Switch
             size="md"
             color={theme.colorScheme === 'dark' ? 'gray' : 'dark'}
@@ -100,8 +116,8 @@ export default function AppHeader() {
               />
             }
           />
-        </Grid.Col>
-      </Grid>
+        </Group>
+      </Group>
     </Header>
   );
 }

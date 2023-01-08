@@ -33,9 +33,7 @@ export default function AppNavbar({ links }: AppNavbarProps) {
       }}
     >
       <Group position="left">
-        <ThemeIcon color={link.iconColor} variant="light">
-          {link.icon}
-        </ThemeIcon>
+        <ThemeIcon color={link.iconColor}>{link.icon}</ThemeIcon>
         <Text size="sm">{link.label}</Text>
       </Group>
     </Button>
