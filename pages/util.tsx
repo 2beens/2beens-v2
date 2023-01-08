@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 import styles from '../styles/Common.module.css';
 
-export default function Home() {
+export default function Util() {
   return (
     <Layout>
       <Head>

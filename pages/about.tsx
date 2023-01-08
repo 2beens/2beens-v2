@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Layout from '../components/Layout';
 import styles from '../styles/Common.module.css';
 
-export default function Home(props: { versionInfo: String }) {
+export default function About(props: { versionInfo: String }) {
   return (
     <Layout>
       <Head>
