@@ -27,7 +27,7 @@ export default function Home(props: GetPostsResponse) {
   const [activePage, setPage] = useState(1);
 
   return (
-    <Layout home>
+    <Layout>
       <Head>
         <title>Serj Tubin v2</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
