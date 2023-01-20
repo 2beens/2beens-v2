@@ -7,8 +7,6 @@ import {
   MediaQuery,
   useMantineTheme,
 } from '@mantine/core';
-import styles from '../styles/Layout.module.css';
-import Link from 'next/link';
 import AppNavbar from './AppNavbar';
 import { IconBook2, IconHome, IconMan, IconTools } from '@tabler/icons';
 import AppHeader from './AppHeader';
@@ -19,10 +17,8 @@ export const siteTitle = '2beens v2';
 
 export default function Layout({
   children,
-  home,
 }: {
   children: React.ReactNode;
-  home?: boolean;
 }) {
   const theme = useMantineTheme();
   const appContext = useContext(AppCtx);
@@ -94,12 +90,6 @@ export default function Layout({
       </Head>
 
       <main>{children}</main>
-
-      {!home && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Back to home</Link>
-        </div>
-      )}
     </AppShell>
   );
 }

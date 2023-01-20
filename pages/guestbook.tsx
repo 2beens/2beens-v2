@@ -7,6 +7,7 @@ import {
   Stack,
   Text,
   TextInput,
+  Center,
 } from '@mantine/core';
 import { IconMan, IconPencil } from '@tabler/icons';
 import { GetServerSideProps } from 'next';
@@ -15,7 +16,6 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import { getTimestampString } from '../shared/libs/common';
 import { GuestbookMessage } from '../shared/libs/guestbook/GuestbookMessage';
-import styles from '../styles/Common.module.css';
 
 export default function Guestbook({
   messages,
@@ -89,9 +89,10 @@ export default function Guestbook({
         <title>SerjTubin Guestbook</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <main className={styles.main}>
-        <h1>Guestbook</h1>
-
+      <main>
+        <Center>
+          <h1>Guestbook</h1>
+        </Center>
         <Stack style={{ marginTop: 0, marginBottom: 'auto' }}>
           <Grid>
             <Grid.Col span={4}>
