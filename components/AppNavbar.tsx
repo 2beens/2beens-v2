@@ -29,6 +29,8 @@ export default function AppNavbar({ links }: AppNavbarProps) {
       key={link.link}
       variant='light'
       onClick={() => {
+        // TODO: setting active selected route/button can be done with useSelectedLayoutSegment as:
+        // https://beta.nextjs.org/docs/api-reference/use-selected-layout-segment
         router.push(link.link);
         console.log('now active', link.link);
       }}
