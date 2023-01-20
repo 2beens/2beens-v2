@@ -11,7 +11,6 @@ import {
   Divider,
 } from '@mantine/core';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 interface AppNavbarProps {
   links: {
@@ -24,17 +23,14 @@ interface AppNavbarProps {
 
 export default function AppNavbar({ links }: AppNavbarProps) {
   const router = useRouter();
-  const [active, setActive] = useState(links[0].link);
 
   const linkItems = links.map((link) => (
     <Button
       key={link.link}
-      variant={active === link.link ? 'filled' : 'light'}
+      variant='light'
       onClick={() => {
-        console.log('prev active', active);
-        setActive(link.link);
         router.push(link.link);
-        console.log('now active', active);
+        console.log('now active', link.link);
       }}
     >
       <Group position="left">
