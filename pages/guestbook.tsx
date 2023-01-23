@@ -16,6 +16,7 @@ import { useState } from 'react';
 import Layout from '../components/Layout';
 import { getTimestampString } from '../shared/libs/common';
 import { GuestbookMessage } from '../shared/libs/guestbook/GuestbookMessage';
+import { useRouter } from 'next/router';
 
 export default function Guestbook({
   messages,
@@ -41,6 +42,7 @@ export default function Guestbook({
 
   const [author, setAuthor] = useState('anon');
   const [message, setMessage] = useState('');
+  const router = useRouter();
 
   const sendNewMessage = async (author: string, message: string) => {
     if (!message) {
@@ -76,11 +78,9 @@ export default function Guestbook({
     }
 
     const respData = await response.text();
-    console.log('resp', respData);
     const newMessageId = respData.split(':')[1];
-    console.warn(newMessageId);
-
-    // TODO: refresh messages
+    // console.warn(newMessageId);
+    router.reload(router.asPath);
   };
 
   return (
